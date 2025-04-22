@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+
 def home(request):
     return render(request, 'website/home.html')
 def electronics(request):
@@ -96,3 +97,4 @@ def error_500(request):
     return render(request, 'pages/examples/500.html')
 def blank_page(request):
     return render(request, 'pages/examples/blank.html')
+
