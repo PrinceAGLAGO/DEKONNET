@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Annonce, Exigence
+from .forms import AnnonceForm, ExigenceForm
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -98,3 +102,34 @@ def error_500(request):
 def blank_page(request):
     return render(request, 'pages/examples/blank.html')
 
+@login_required
+def creer_annonce(request):
+    if request.method == 'POST':
+        form = AnnonceForm(request.POST, request.FILES)
+        if form.is_valid():
+            annonce = form.save(commit=False)
+            annonce.user = request.user
+            annonce.save()
+            return redirect('ajouter_exigences', annonce_id=annonce.id)
+    else:
+        form = AnnonceForm()
+    return render(request, 'dekon/annonce/creer.html', {'form': form})
+
+
+@login_required
+def ajouter_exigences(request, annonce_id):
+    annonce = Annonce.objects.get(id=annonce_id, user=request.user)
+    if request.method == 'POST':
+        form = ExigenceForm(request.POST)
+        if form.is_valid():
+            exigence = form.save(commit=False)
+            exigence.annonce = annonce
+            exigence.save()
+            return redirect('dashboard')
+    else:
+        form = ExigenceForm()
+    return render(request, 'dekon/annonce/exigences.html', {'form': form, 'annonce': annonce})
+
+def liste_annonces(request):
+    annonces = Annonce.objects.filter(statut='actif')
+    return render(request, 'dekon/annonce/liste.html', {'annonces': annonces})

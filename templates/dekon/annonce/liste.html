@@ -1,0 +1,21 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Annonces disponibles</h1>
+{% for annonce in annonces %}
+<div class="annonce">
+    <h3> 
+        {{annonce.titre}} ({{ annonce.get_type_annonce_display}})
+    </h3>
+    <img src="{{ annonce.article_image.url }}" alt="Image de l'annonce" style="width: 200px; height: 200px;">
+    <p>publié le :{{annonce.date_publication}} </p>
+    <p>Prix: {{ annonce.prix }} FCFA</p>
+    <p>Description: {{ annonce.description }}</p>
+    <a href="{% url 'dekon:annonce_detail' annonce.id %}" class="btn btn-primary">Voir les détails</a>
+
+{% empty %}
+<p>Aucune annonce disponible.</p>
+{% endfor %}
+</div>
+{% endblock content %}

@@ -57,4 +57,9 @@ urlpatterns = [
     # path('projects/', views.projects, name='projects'),
     # path('blog/', views.blog, name='blog'),
     # path('team/', views.team, name='team'),
+    path('annonces/creer/', views.creer_annonce, name='creer_annonce'),
+    path('annonces/exigences', views.ajouter_exigences, name='ajouter_exigences'),
+    path('annonces/',views.liste_annonces, name='liste_annonces'),
+    
+
 ]
