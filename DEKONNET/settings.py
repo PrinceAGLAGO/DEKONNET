@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
 AUTH_USER_MODEL = 'utilisateurs.Utilisateur'
 
 MIDDLEWARE = [
@@ -109,6 +110,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+LOGIN_REDIRECT_URL = 'accueil'
+LOGOUT_REDIRECT_URL = 'connexion'
+LOGIN_URL = 'connexion'
 
 
 # Internationalization

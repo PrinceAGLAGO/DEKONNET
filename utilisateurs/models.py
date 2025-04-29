@@ -28,7 +28,8 @@ class UtilisateurManager( BaseUserManager):
             raise ValueError('Le superutilisateur doit avoir is_superutilisateur=True.')
 
         return self.create_user(email, password, **extra_fields)
-    
+
+
 class Utilisateur(AbstractUser):
     username = None
     email = models.EmailField(unique=True, validators=[EmailValidator()])
