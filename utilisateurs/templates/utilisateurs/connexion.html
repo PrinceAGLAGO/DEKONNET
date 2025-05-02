@@ -7,53 +7,132 @@
     <title>Dekon-net | Connexion</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <!-- Bootstrap -->
+    <!-- Styles -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-    <!-- Font Awesome -->
     <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
-    <!-- Theme style -->
-    <link href="{% static 'css/AdminLTE.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style1.css' %}" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 30px;
+        }
+
+        .login-image {
+            max-width: 400px;
+            height: 680px;
+            border-radius: 10px;
+        }
+
+        .form-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            width: 400px;
+        }
+
+        .Entete {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group label {
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn-block {
+            width: 100%;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .margin.text-center {
+            margin-top: 20px;
+        }
+
+        .btn-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 5px;
+            color: black;
+        }
+
+        .footer a {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 
-<body class="bg-black">
-    <div class="form-box" id="login-box">
-        <div class="header">Connexion</div>
+<body>
+    <div class="login-container">
+        <!-- Image à gauche -->
+        <img src="{% static 'images/accueil.jpeg' %}" alt="Image de connexion" class="login-image">
 
-        <form method="post" action="{% url 'connexion' %}">
-            {% csrf_token %}
-            <div class="body bg-gray">
-                {% if form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        {{ form.non_field_errors }}
+        <!-- Formulaire -->
+        <div class="form-box" id="login-box">
+            <div class="Entete">Connexion</div>
+
+            <form method="post" action="{% url 'connexion' %}">
+                {% csrf_token %}
+                <div class="body bg-gray">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+                    <div class="form-group">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        {{ form.username.errors }}
                     </div>
-                {% endif %}
-                <div class="form-group">
-                    {{ form.username.label_tag }}
-                    {{ form.username }}
-                    {{ form.username.errors }}
+                    <div class="form-group">
+                        {{ form.password.label_tag }}
+                        {{ form.password }}
+                        {{ form.password.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" name="remember_me"> Se souvenir de moi</label>
+                    </div>
                 </div>
-                <div class="form-group">
-                    {{ form.password.label_tag }}
-                    {{ form.password }}
-                    {{ form.password.errors }}
-                </div>
-                <div class="form-group">
-                    <label><input type="checkbox" name="remember_me"> Se souvenir de moi</label>
-                </div>
-            </div>
 
-            <div class="footer">
-                <button type="submit" class="btn bg-olive btn-block">Se connecter</button>
-                <p><a href="#">Mot de passe oublié ?</a></p>
-                <a href="{% url 'inscription' %}" class="text-center">Créer un compte</a>
-            </div>
-        </form>
+                <div class="footer">
+                    <button type="submit" class="btn bg-olive btn-block">Se connecter</button>
+                    <p><a href="#">Mot de passe oublié ?</a></p>
+                    <a href="{% url 'inscription' %}" class="text-center">Créer un compte</a>
+                </div>
+            </form>
 
-        <div class="margin text-center">
-            <span>Connexion via réseaux sociaux</span><br/>
-            <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
-            <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
-            <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
+            <div class="margin text-center">
+                <span>Connexion via réseaux sociaux</span><br/>
+                <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
+                <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
+                <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
+            </div>
         </div>
     </div>
 

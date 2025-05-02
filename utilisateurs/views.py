@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login, logout
-from forms import *
+from .forms import *
 
 
 # Create your views here.
@@ -10,10 +10,13 @@ def inscription(request):
         if form.is_valid():
             utilisateur = form.save()
             login(request, utilisateur)
-            return redirect('home')
+            return redirect('connexion')
+        else:
+            print(form.errors)  # <-- ajoute ceci pour voir les erreurs en console
     else:
         form = InscriptionForm()
     return render(request, 'utilisateurs/inscription.html', {'form': form})
+
 
 
 def connexion(request):

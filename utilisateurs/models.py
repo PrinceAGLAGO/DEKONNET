@@ -31,19 +31,26 @@ class UtilisateurManager( BaseUserManager):
 
 
 class Utilisateur(AbstractUser):
+
+    MODE_PAIEMENT_CHOICES = [
+        ('carte', 'Carte Bancaire'),
+        ('mobileMo', 'Mobile Money'),
+        ('paypal', 'PayPal'),
+        ('especes', 'Espèces'),
+    ]
+
     username = None
     email = models.EmailField(unique=True, validators=[EmailValidator()])
     nom = models.CharField(max_length=30, validators=[MinLengthValidator(2), MaxLengthValidator(30)])
     prenom = models.CharField(max_length=30, validators=[MinLengthValidator(2), MaxLengthValidator(30)])
-    telephone = models.CharField(max_length=15, unique=True, validators=[RegexValidator(r'^\+?1?\d{9,15}$')])
+    telephone = models.CharField(max_length=15, unique=True, validators=[RegexValidator(regex=r'^(\+228)?\d{8,15}$', message="Entrez un numéro togolais valide à 8 chiffres, avec ou sans +228")])
     date_naissance = models.DateField(null=True, blank=True)
-    photo_profil = models.CharField(max_length=25, blank=True)
-    date_inscription = models.DateTimeField(default=timezone.now)
+    photo_profil = models.CharField(max_length=25, blank=True, default='default.jpg')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superutilisateur = models.BooleanField(default=False)
     adresse_geo=models.CharField(max_length=50, blank=True)
-    mode_paiment=models.CharField(max_length=50, blank=True)
+    mode_paiment=models.CharField(max_length=50, blank=True, choices=MODE_PAIEMENT_CHOICES,default='carte')
     date_inscription=models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
@@ -53,8 +60,9 @@ class Utilisateur(AbstractUser):
 
     def __str__(self):
         return self.email
-    def __str__(self):
-        return f"{self.prenoms}{self.nom}"
+
+    def utilisateurConnecter(self):
+        return f"{self.prenom}{self.nom}"
     #les methodes 
 
     def seConnecter(self, password):
