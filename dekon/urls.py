@@ -51,15 +51,9 @@ urlpatterns = [
     path('examples/404/', views.error_404, name='error_404'),
     path('examples/500/', views.error_500, name='error_500'),
     path('examples/blank/', views.blank_page, name='blank_page'),
-    #path('home/', views.home, name='home'),
-    # path('contact/', views.contact, name='contact'),
-    # path('services/', views.services, name='services'),
-    # path('projects/', views.projects, name='projects'),
-    # path('blog/', views.blog, name='blog'),
-    # path('team/', views.team, name='team'),
     path('annonces/creer/', views.creer_annonce, name='creer_annonce'),
-    path('annonces/exigences', views.ajouter_exigences, name='ajouter_exigences'),
-    path('annonces/',views.liste_annonces, name='liste_annonces'),
-    
-
+    # path('annonces/exigences', views.ajouter_exigences, name='ajouter_exigences'),
+    path('liste_annonces/',views.liste_annonces, name='liste_annonces'),
+    path('soumettre-annonce/', views.soumettre_annonce, name='soumettre_annonce'),
+    path('annonce/<int:annonce_id>/', views.detail_annonce, name='detail_annonce'),
 ]

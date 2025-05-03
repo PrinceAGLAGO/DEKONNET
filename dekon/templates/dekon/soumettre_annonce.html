@@ -1,0 +1,215 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <!-- Logo centré en haut -->
+                <div class="card-header text-center">
+                    <img src="{% static 'images/logodekonnet.jpeg' %}" alt="Logo" style="max-width: 150px; max-height: 150px;">
+                </div>
+
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="{{ form.type_annonce.id_for_label }}" class="form-label">Type d'annonce</label>
+                            {{ form.type_annonce }}
+                            {% if form.type_annonce.errors %}
+                                <div class="text-danger">{{ form.type_annonce.errors|striptags }}</div>
+                            {% endif %}
+                            {% if form.type_annonce.help_text %}
+                                <small class="form-text text-muted">{{ form.type_annonce.help_text }}</small>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.titre.id_for_label }}" class="form-label">Titre</label>
+                            {{ form.titre }}
+                            {% if form.titre.errors %}
+                                <div class="text-danger">{{ form.titre.errors|striptags }}</div>
+                            {% endif %}
+                            <!-- {% if form.titre.help_text %}
+                                <small class="form-text text-muted">{{ form.titre.help_text }}</small>
+                            {% endif %} -->
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.categorie_article.id_for_label }}" class="form-label">Catégorie</label>
+                            {{ form.categorie_article }}
+                            {% if form.categorie_article.errors %}
+                                <div class="text-danger">{{ form.categorie_article.errors|striptags }}</div>
+                            {% endif %}
+                            <!-- {% if form.categorie_article.help_text %}
+                                <small class="form-text text-muted">{{ form.categorie_article.help_text }}</small>
+                            {% endif %} -->
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="text-danger">{{ form.description.errors|striptags }}</div>
+                            {% endif %}
+                            <!-- {% if form.description.help_text %}
+                                <small class="form-text text-muted">{{ form.description.help_text }}</small>
+                            {% endif %} -->
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.prix.id_for_label }}" class="form-label">Prix</label>
+                            <div class="input-group">
+                                {{ form.prix }}
+                                <span class="input-group-text">FCFA</span>
+                            </div>
+                            {% if form.prix.errors %}
+                                <div class="text-danger">{{ form.prix.errors|striptags }}</div>
+                            {% endif %}
+                            <!-- {% if form.prix.help_text %}
+                                <small class="form-text text-muted">{{ form.prix.help_text }}</small>
+                            {% endif %} -->
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.article_image.id_for_label }}" class="form-label">Image de l'article</label>
+                            {{ form.article_image }}
+                            {% if form.article_image.errors %}
+                                <div class="text-danger">{{ form.article_image.errors|striptags }}</div>
+                            {% endif %}
+                            <!-- {% if form.article_image.help_text %}
+                                <small class="form-text text-muted">{{ form.article_image.help_text }}</small>
+                            {% endif %} -->
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.user_contact.id_for_label }}" class="form-label">Contact</label>
+                            {{ form.user_contact }}
+                            {% if form.user_contact.errors %}
+                                <div class="text-danger">{{ form.user_contact.errors|striptags }}</div>
+                            {% endif %}
+                            <!-- {% if form.user_contact.help_text %}
+                                <small class="form-text text-muted">{{ form.user_contact.help_text }}</small>
+                            {% endif %} -->
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.etiquette.id_for_label }}" class="form-label">Mots-clés</label>
+                            {{ form.etiquette }}
+                            {% if form.etiquette.errors %}
+                                <div class="text-danger">{{ form.etiquette.errors|striptags }}</div>
+                            {% endif %}
+                            <!-- {% if form.etiquette.help_text %}
+                                <small class="form-text text-muted">{{ form.etiquette.help_text }}</small>
+                            {% endif %} -->
+                        </div>
+
+                        <!-- Boutons centrés -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Publier l'annonce</button>
+                            <a href="{% url 'home' %}" class="btn btn-outline-secondary">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Styles de la carte */
+    .card {
+        border: 2px solid #f26522;
+        border-radius: 30px;
+        overflow: hidden;
+        margin: 20px auto; /* Centrage horizontal */
+        max-width: 800px; /* Largeur maximale */
+    }
+
+    .card-header {
+        background-color: #f26522 !important;
+        padding: 0.5rem;
+    }
+
+    /* Styles des champs de formulaire */
+    .form-control, .form-select {
+        border-radius: 8px;
+        padding: 10px 15px;
+        border: 1px solid #ced4da;
+        width: 100%; /* Occupe toute la largeur disponible */
+        max-width: 500px; /* Largeur maximale */
+        margin: 0 auto; /* Centrage horizontal */
+        display: block; /* Important pour le centrage horizontal */
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #f26522;
+        box-shadow: 0 0 0 0.2rem rgba(242, 101, 34, 0.25);
+    }
+
+    /* Styles des boutons */
+    .btn-primary {
+        background-color: #f26522;
+        border-color: #f26522;
+        padding: 10px 25px;
+        border-radius: 8px;
+        font-weight: 600;
+        margin: 0 5px; /* Ajoute un peu d'espace entre les boutons */
+    }
+
+    .btn-primary:hover {
+        background-color: #d85a1e;
+        border-color: #d85a1e;
+    }
+
+    .btn-outline-secondary {
+        padding: 10px 25px;
+        border-radius: 8px;
+        font-weight: 600;
+        margin: 0 5px; /* Ajoute un peu d'espace entre les boutons */
+    }
+
+    /* Styles des labels */
+    .form-label {
+        text-align: left; /* Aligne le texte du label à gauche */
+        margin-bottom: 0.2rem; /* Réduit l'espace sous le label */
+        display: inline-block; /* Permet de définir la largeur */
+        width: 150px; /* Ajustez cette valeur selon la largeur désirée pour le label */
+        vertical-align: top; /* Aligne le label en haut du champ */
+    }
+
+    .form-control, .form-select {
+        text-align: left; /* Aligne le texte du champ à gauche */
+        display: inline-block; /* Permet d'aligner horizontalement avec le label */
+        width: calc(100% - 160px); /* Ajustez cette valeur en fonction de la largeur du label + un peu d'espace */
+    }
+
+    /* Styles pour la description */
+    #id_description {
+        min-height: 120px;
+    }
+
+    /* Styles pour le fond */
+    .bg-light {
+        background-color: #f8f9fa !important;
+    }
+
+    /* Styles pour les écrans plus petits */
+    @media (max-width: 992px) {
+        .col-lg-4, .col-lg-8 {
+            width: 100%;
+        }
+
+        .col-lg-4 {
+            padding: 2rem !important;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .min-vh-100 {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+    }
+</style>
+{% endblock %}

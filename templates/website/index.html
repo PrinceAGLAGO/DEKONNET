@@ -1,0 +1,69 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+<div class="banner_section layout_padding">
+    <div class="container">
+        <div id="my_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1 class="banner_taital">Bienvenue sur DEKON NET</h1>
+                            <div class="buynow_bt"><a href="{% url 'soumettre_annonce' %}">Publier une annonce</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1 class="banner_taital">Découvrez nos annonces</h1>
+                            <div class="buynow_bt"><a href="{% url 'liste_annonces' %}">Voir les annonces</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <i class="fa fa-plus-circle fa-3x mb-3"></i>
+                    <h3>Publier une annonce</h3>
+                    <p>Partagez vos articles avec la communauté</p>
+                    <a href="{% url 'soumettre_annonce' %}" class="btn btn-primary">Commencer</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <i class="fa fa-search fa-3x mb-3"></i>
+                    <h3>Rechercher</h3>
+                    <p>Découvrez les annonces disponibles</p>
+                    <a href="{% url 'liste_annonces' %}" class="btn btn-primary">Explorer</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <i class="fa fa-exchange fa-3x mb-3"></i>
+                    <h3>Échanger</h3>
+                    <p>Faites des affaires en toute sécurité</p>
+                    <a href="#" class="btn btn-primary">En savoir plus</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

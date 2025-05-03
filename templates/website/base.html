@@ -1,4 +1,5 @@
 {% load static %}
+{%block content%}
 <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
 <script src="{%static 'js/bootstrap.bundle.min.js'%}"></script>
 
@@ -54,11 +55,12 @@
                   <div class="col-sm-12">
                      <div class="custom_menu">
                         <ul>
-                           <li><a href="#">Best Sellers</a></li>
-                           <li><a href="#">Gift Ideas</a></li>
-                           <li><a href="#">New Releases</a></li>
-                           <li><a href="#">Today's Deals</a></li>
-                           <li><a href="#">Customer Service</a></li>
+                           <li><a href="{% url 'soumettre_annonce' %}">Soumettre une annonce</a></li>
+                           <li><a href="{% url 'liste_annonces' %}">Voir les annonces</a></li>
+                           <li><a href="#">Meilleures ventes</a></li>
+                           <li><a href="#">Nouveautés</a></li>
+                           <li><a href="#">Offres du jour</a></li>
+                           <li><a href="#">Service client</a></li>
                         </ul>
                      </div>
                   </div>
@@ -83,16 +85,29 @@
                <div class="containt_main">
                   <div id="mySidenav" class="sidenav">
                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                     <a href="{% url 'home' %}">Maison</a>
-                     <a href="{% url 'fashion' %}">Achats</a>
-                     <a href="{% url 'electronics' %}">Ventes</a>
-                     <a href="{% url 'jewellery' %}">Trocs ou Deals</a>
-                     <a href="{% url 'jewellery' %}">Offres et Promotions</a>
-                     <a href="{% url 'jewellery' %}">Blog</a>
-                     <a href="{% url 'jewellery' %}">Equipe</a>
-                     <a href="{% url 'jewellery' %}">Contact</a>
-                     <a href="{% url 'jewellery' %}">FAQS</a>
-
+                     <a href="{% url 'home' %}">Accueil</a>
+                     <a href="{% url 'soumettre_annonce' %}">Soumettre une annonce</a>
+                     <a href="{% url 'liste_annonces' %}">Voir les annonces</a>
+                     <a href="{% url 'fashion' %}">Mode</a>
+                     <a href="{% url 'electronics' %}">Électronique</a>
+                     <a href="{% url 'jewellery' %}">Bijoux</a>
+                     <a href="{% url 'jardin' %}">Jardin</a>
+                     <a href="{% url 'sport' %}">Sports et Loisirs</a>
+                     <a href="{% url 'enfant' %}">Enfants et Bébé</a>
+                     <a href="{% url 'livre' %}">Livres et Médias</a>
+                     <a href="{% url 'automobile' %}">Automobile</a>
+                     <a href="{% url 'service' %}">Services et Cours</a>
+                     <a href="{% url 'art' %}">Art et Objets de Collection</a>
+                     <a href="{% url 'bricolage' %}">Bricolage et Aménagement</a>
+                     <a href="{% url 'alimentation' %}">Alimentation Artisanale</a>
+                     <a href="{% url 'beaute' %}">Beauté et Soins</a>
+                     <a href="{% url 'voyage' %}">Voyages et Echanges</a>
+                     <a href="{% url 'animaux' %}">Animaux de Compagnie</a>
+                     <a href="{% url 'modedurable' %}">Mode Durable et Ethique</a>
+                     <a href="{% url 'decoration' %}">Décoration</a>
+                     <a href="{% url 'maison' %}">Maison</a>
+                     <a href="{% url 'sante' %}">Santé et bien-être</a>
+                     <a href="{% url 'cuisine' %}">Ustensiles de Cuisine</a>
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="{%static 'images/toggle-icon.png'%}"></span>
                   <div class="dropdown">
@@ -168,8 +183,8 @@
                      <div class="carousel-item active">
                         <div class="row">
                            <div class="col-sm-12">
-                              <h1 class="banner_taital">Commencer <br>Vos Achats préféré</h1>
-                              <div class="buynow_bt"><a href="#">Acheter Maintenant</a></div>
+                              <h1 class="banner_taital">Découvrez nos <br>Annonces récentes</h1>
+                              <div class="buynow_bt"><a href="{% url 'soumettre_annonce' %}">Publier une annonce</a></div>
                            </div>
                         </div>
                      </div>
@@ -676,6 +691,6 @@
 
 
 
-{%block content%}
+
 
 {% endblock content %}
