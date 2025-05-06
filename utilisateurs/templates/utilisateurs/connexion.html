@@ -1,12 +1,10 @@
-{% extends 'website/base.html' %}
 {% load static %}
-
 {% block content %}
 <!DOCTYPE html>
 <html class="bg-black">
 <head>
     <meta charset="UTF-8">
-    <title>Dekon-net | Publier une annonce</title>
+    <title>Dekon-net | Connexion</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <!-- Styles -->
@@ -21,20 +19,18 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
-        .form-container {
+        .login-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             gap: 30px;
-            padding: 20px;
         }
 
-        .form-image {
+        .login-image {
             max-width: 400px;
-            height: auto;
+            height: 680px;
             border-radius: 10px;
-            object-fit: cover;
         }
 
         .form-box {
@@ -42,7 +38,7 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            width: 500px;
+            width: 400px;
         }
 
         .Entete {
@@ -55,130 +51,88 @@
 
         .form-group label {
             font-weight: 600;
-            display: block;
-            margin-bottom: 5px;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-group input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
+            margin-top: 5px;
+            margin-bottom: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
         }
 
         .btn-block {
             width: 100%;
             padding: 10px;
             font-weight: bold;
-            margin-top: 10px;
         }
 
-        .input-group-text {
-            background-color: #f8f9fa;
-            border: 1px solid #ced4da;
-        }
-
-        .footer {
+        .margin.text-center {
             margin-top: 20px;
         }
 
-        @media (max-width: 992px) {
-            .form-container {
-                flex-direction: column;
-            }
-            
-            .form-image {
-                max-width: 100%;
-                height: 300px;
-                margin-bottom: 20px;
-            }
-            
-            .form-box {
-                width: 100%;
-            }
+        .btn-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 5px;
+            color: black;
+        }
+
+        .footer a {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
-    <div class="form-container">
+    <div class="login-container">
         <!-- Image à gauche -->
-        <img src="{% static 'images/logodekonnet.jpeg' %}" alt="Image dekonnet" class="form-image">
+        <img src="{% static 'images/accueil.jpeg' %}" alt="Image de connexion" class="login-image">
 
         <!-- Formulaire -->
-        <div class="form-box">
-            <div class="Entete">Publier une annonce</div>
+        <div class="form-box" id="login-box">
+            <div class="Entete">Connexion</div>
 
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" action="{% url 'connexion' %}">
                 {% csrf_token %}
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="{{ form.type_annonce.id_for_label }}">Type d'annonce</label>
-                            {{ form.type_annonce }}
+                <div class="body bg-gray">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
                         </div>
+                    {% endif %}
+                    <div class="form-group">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        {{ form.username.errors }}
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="{{ form.categorie_article.id_for_label }}">Catégorie</label>
-                            {{ form.categorie_article }}
-                        </div>
+                    <div class="form-group">
+                        {{ form.password.label_tag }}
+                        {{ form.password }}
+                        {{ form.password.errors }}
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="{{ form.titre.id_for_label }}">Titre</label>
-                    {{ form.titre }}
-                </div>
-
-                <div class="form-group">
-                    <label for="{{ form.description.id_for_label }}">Description</label>
-                    {{ form.description }}
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="{{ form.prix.id_for_label }}">Prix</label>
-                            <div class="input-group">
-                                {{ form.prix }}
-                                <span class="input-group-text">€</span>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" name="remember_me"> Se souvenir de moi</label>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="{{ form.user_contact.id_for_label }}">Contact</label>
-                            {{ form.user_contact }}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="{{ form.article_image.id_for_label }}">Image de l'article</label>
-                    {{ form.article_image }}
-                </div>
-
-                <div class="form-group">
-                    <label for="{{ form.etiquette.id_for_label }}">Mots-clés</label>
-                    {{ form.etiquette }}
-                    <small class="text-muted">Séparez les mots-clés par des virgules</small>
                 </div>
 
                 <div class="footer">
-                    <button type="submit" class="btn bg-olive btn-block">Publier l'annonce</button>
-                    <a href="{% url 'home' %}" class="btn btn-default btn-block">Annuler</a>
+                    <button type="submit" class="btn bg-olive btn-block">Se connecter</button>
+                    <p><a href="#">Mot de passe oublié ?</a></p>
+                    <a href="{% url 'inscription' %}" class="text-center">Créer un compte</a>
                 </div>
             </form>
+
+            <div class="margin text-center">
+                <span>Connexion via réseaux sociaux</span><br/>
+                <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
+                <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
+                <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
+            </div>
         </div>
     </div>
 

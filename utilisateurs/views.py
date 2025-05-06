@@ -12,7 +12,7 @@ def inscription(request):
             login(request, utilisateur)
             return redirect('connexion')
         else:
-            print(form.errors)  # <-- ajoute ceci pour voir les erreurs en console
+            print(form.errors)
     else:
         form = InscriptionForm()
     return render(request, 'utilisateurs/inscription.html', {'form': form})

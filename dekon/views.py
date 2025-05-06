@@ -120,18 +120,18 @@ def detail_annonce(request, annonce_id):
     annonce = Annonce.objects.get(id=annonce_id)
     return render(request, 'dekon/detail_annonce.html', {'annonce': annonce})
 
-# @login_required
-def creer_annonce(request):
-    if request.method == 'POST':
-        form = AnnonceForm(request.POST, request.FILES)
-        if form.is_valid():
-            annonce = form.save(commit=False)
-            annonce.user = request.user
-            annonce.save()
-            return redirect('ajouter_exigences', annonce_id=annonce.id)
-    else:
-        form = AnnonceForm()
-    return render(request, 'dekon/annonce/creer.html', {'form': form})
+# # @login_required
+# def creer_annonce(request):
+#     if request.method == 'POST':
+#         form = AnnonceForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             annonce = form.save(commit=False)
+#             annonce.user = request.user
+#             annonce.save()
+#             return redirect('ajouter_exigences', annonce_id=annonce.id)
+#     else:
+#         form = AnnonceForm()
+#     return render(request, 'dekon/annonce/creer.html', {'form': form})
 
 @login_required
 def ajouter_exigences(request, annonce_id):
