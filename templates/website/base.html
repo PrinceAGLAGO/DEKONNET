@@ -28,7 +28,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <a class="navbar-brand" href="#">
-                    <img src="{% static 'images/logodekonnet.jpeg' %}" alt="DEKON NET" class="logo-img">
+                    <div class="logo"> <img src="{% static 'images/logodekonnet.jpeg' %}" alt="DEKON NET"> </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@
                                 <a class="nav-link" href="#fonctionnalites">Fonctionnalités</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'profil_utilisateur' %}">Profil</a>
+                                <a class="nav-link" href="#">Profil</a>
                             </li>
                         {% else %}
                             <li class="nav-item">
@@ -62,14 +62,14 @@
                                 <a class="nav-link" href="#fonctionnalites">Fonctionnalités</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'dashboard_abonnee' %}">DASHBOARD</a>
+                                <a class="nav-link" href="{% url 'dashboard' %}">DASHBOARD</a>
                             </li>
                         {% endif %}
                     </ul>
 
                     <div class="auth-buttons ml-3">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm mr-2">Déconnexion</a>
+                            <a href="{% url 'logout_view' %}" class="btn btn-outline-light btn-sm mr-2">Déconnexion</a>
                         {% else %}
                             <a href="#" class="btn btn-outline-light btn-sm mr-2" data-toggle="modal" data-target="#loginModal">Connexion</a>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registerModal">Inscription</a>
@@ -686,10 +686,17 @@
             padding: 0.5rem 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
+        .logo{
+            height: 80px;
+            width: 80px;
+            padding: 0;
+            margin: 0;
+        }
         
-        .logo-img {
-            height: 40px;
-            transition: var(--transition);
+        .logo img {
+            height: fit-content;
+            border-radius: 100%;
         }
         
         .navbar.scrolled .logo-img {
@@ -985,7 +992,6 @@
         /* How It Works Section */
         .how-it-works-section {
             padding: 5rem 0;
-            background: linear-gradient(135deg, rgba(242, 101, 34, 0.05) 0%, rgba(44)
-
-
-      {%endblock%}
+            background: linear-gradient(135deg, rgba(242, 101, 34, 0.05) 0%, rgba(4462, 80, 0.05) 100%);
+}</style>
+{%endblock%}

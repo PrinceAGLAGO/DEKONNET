@@ -152,9 +152,9 @@ def liste_annonces(request):
     return render(request, 'dekon/liste_annonces.html', {'annonces': annonces})
 
 
-def dashboard_abonnee(request):
-    if request.user.is_authenticated:
-        annonces = Annonce.objects.filter(user=request.user)
-        return render(request, 'dekon/dashboard_abonnee.html', {'annonces': annonces})
-    else:
-        return redirect('login')
+#def dashboard_abonnee(request):
+#    if request.user.is_authenticated:
+ #       annonces = Annonce.objects.filter(user=request.user)
+  #      return render(request, 'dekon/dashboard_abonnee.html', {'annonces': annonces})
+   # else:
+    #    return redirect('login')
