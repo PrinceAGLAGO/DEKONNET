@@ -149,6 +149,7 @@ def ajouter_exigences(request, annonce_id):
 
 def liste_annonces(request):
     annonces = Annonce.objects.filter(statut='actif')
+<<<<<<< HEAD
     return render(request, 'dekon/liste_annonces.html', {'annonces': annonces})
 
 
@@ -158,3 +159,6 @@ def liste_annonces(request):
   #      return render(request, 'dekon/dashboard_abonnee.html', {'annonces': annonces})
    # else:
     #    return redirect('login')
+=======
+    return render(request, 'dekon/liste_annonces.html', {'annonces': annonces})
+>>>>>>> 12de449c3b4e51304461edeedc09e4c38ce1e550

@@ -56,6 +56,9 @@ urlpatterns = [
     path('liste_annonces/',views.liste_annonces, name='liste_annonces'),
     path('soumettre-annonce/', views.soumettre_annonce, name='soumettre_annonce'),
     path('annonce/<int:annonce_id>/', views.detail_annonce, name='detail_annonce'),
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 12de449c3b4e51304461edeedc09e4c38ce1e550
 ]

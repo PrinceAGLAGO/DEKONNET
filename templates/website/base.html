@@ -28,13 +28,18 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <a class="navbar-brand" href="#">
+<<<<<<< HEAD
                     <div class="logo"> <img src="{% static 'images/logodekonnet.jpeg' %}" alt="DEKON NET"> </div>
+=======
+                    <img src="{% static 'images/logodekonnet.jpeg' %}" alt="DEKON NET" class="logo-img">
+>>>>>>> 12de449c3b4e51304461edeedc09e4c38ce1e550
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
+<<<<<<< HEAD
                         {% if user.is_authenticated %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'soumettre_annonce' %}">Déposer une annonce</a>
@@ -78,6 +83,28 @@
                 </div>
             </nav>
 
+=======
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'soumettre_annonce' %}">Déposer une annonce</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'liste_annonces' %}">Explorer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#categories">Catégories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#fonctionnalites">Fonctionnalités</a>
+                        </li>
+                    </ul>
+                    <div class="auth-buttons ml-3">
+                        <a href="#" class="btn btn-outline-light btn-sm mr-2" data-toggle="modal" data-target="#loginModal">Connexion</a>
+                        <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registerModal">Inscription</a>
+                    </div>
+                </div>
+            </nav>
+            
+>>>>>>> 12de449c3b4e51304461edeedc09e4c38ce1e550
             <div class="hero-content">
                 <h1 class="hero-title">Trouvez, Vendez, Échangez <span>Autour de Vous</span></h1>
                 <p class="hero-subtitle">La plateforme locale pour vos achats, ventes et échanges en toute confiance</p>
@@ -422,6 +449,555 @@
             </div>
         </div>
     </footer>
+<<<<<<< HEAD
+=======
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Connexion</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" placeholder="Votre adresse email">
+                        </div>
+                        <div class="form-group">
+                            <label>Mot de passe</label>
+                            <input type="password" class="form-control" placeholder="Votre mot de passe">
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+                    </form>
+                    
+                    <div class="text-center mt-3">
+                        <a href="#" class="text-muted">Mot de passe oublié ?</a>
+                    </div>
+                    
+                    <div class="social-login mt-4">
+                        <p class="text-center">Ou connectez-vous avec</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="btn btn-outline-primary mr-2"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            <a href="#" class="btn btn-outline-danger"><i class="fab fa-google"></i> Google</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p>Nouveau sur DEKON NET ? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Créer un compte</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Créer un compte</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Prénom</label>
+                                <input type="text" class="form-control" placeholder="Votre prénom">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Nom</label>
+                                <input type="text" class="form-control" placeholder="Votre nom">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" placeholder="Votre adresse email">
+                        </div>
+                        <div class="form-group">
+                            <label>Téléphone</label>
+                            <input type="tel" class="form-control" placeholder="Votre numéro de téléphone">
+                        </div>
+                        <div class="form-group">
+                            <label>Mot de passe</label>
+                            <input type="password" class="form-control" placeholder="Créez un mot de passe">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmez le mot de passe</label>
+                            <input type="password" class="form-control" placeholder="Confirmez votre mot de passe">
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms">
+                            <label class="form-check-label" for="agreeTerms">J'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+                    </form>
+                    
+                    <div class="social-login mt-4">
+                        <p class="text-center">Ou inscrivez-vous avec</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="btn btn-outline-primary mr-2"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            <a href="#" class="btn btn-outline-danger"><i class="fab fa-google"></i> Google</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p>Vous avez déjà un compte ? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Se connecter</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    
+    <style>
+        /* Variables CSS */
+        :root {
+            --primary-color: #f26522;
+            --primary-dark: #d85a1e;
+            --secondary-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --gray-color: #6c757d;
+            --light-gray: #e9ecef;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+        
+        .btn {
+            font-weight: 500;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(242, 101, 34, 0.3);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .section-header p {
+            color: var(--gray-color);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(242, 101, 34, 0.2) 0%, rgba(44, 62, 80, 0.8) 100%);
+            z-index: 0;
+        }
+        
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(44, 62, 80, 0.95);
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-img {
+            height: 40px;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled .logo-img {
+            height: 35px;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.25rem;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            margin-top: 4rem;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-title span {
+            color: var(--primary-color);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(242, 101, 34, 0.3);
+            z-index: -1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .search-box {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .search-box .form-control {
+            height: 50px;
+            border-radius: 50px 0 0 50px;
+            border-right: none;
+            padding-left: 1.5rem;
+        }
+        
+        .search-box .custom-select {
+            height: 50px;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            max-width: 200px;
+        }
+        
+        .search-box .btn {
+            height: 50px;
+            border-radius: 0 50px 50px 0;
+            padding: 0 2rem;
+        }
+        
+        .hero-buttons {
+            margin-top: 2rem;
+        }
+        
+        .hero-scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            animation: bounce 2s infinite;
+        }
+        
+        .hero-scroll-down a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 36px;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .hero-scroll-down a:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(5px);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        /* Categories Section */
+        .categories-section {
+            padding: 5rem 0;
+            background-color: var(--light-color);
+        }
+        
+        .category-card {
+            display: block;
+            background: white;
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            height: 100%;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(242, 101, 34, 0.1) 0%, rgba(44, 62, 80, 0.1) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .category-card:hover .category-icon {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+        
+        .category-icon i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .category-card:hover .category-icon i {
+            color: white;
+        }
+        
+        .category-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-card p {
+            color: var(--gray-color);
+            margin-bottom: 0;
+        }
+        
+        /* Listings Section */
+        .listings-section {
+            padding: 5rem 0;
+        }
+        
+        .listing-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            height: 100%;
+        }
+        
+        .listing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .listing-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .listing-image {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+        
+        .listing-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .listing-card:hover .listing-image img {
+            transform: scale(1.05);
+        }
+        
+        .listing-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .listing-card:hover .listing-overlay {
+            opacity: 1;
+        }
+        
+        .listing-content {
+            padding: 1.5rem;
+        }
+        
+        .listing-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .listing-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+        
+        .listing-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--gray-color);
+        }
+        
+        .listing-meta span i {
+            margin-right: 0.25rem;
+        }
+        
+        /* How It Works Section */
+        .how-it-works-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(242, 101, 34, 0.05) 0%, rgba(44)
+>>>>>>> 12de449c3b4e51304461edeedc09e4c38ce1e550
 
     <!-- Modals -->
     <!-- Login Modal -->
@@ -470,6 +1046,7 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <!-- Register Modal -->
     <div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -995,3 +1572,6 @@
             background: linear-gradient(135deg, rgba(242, 101, 34, 0.05) 0%, rgba(4462, 80, 0.05) 100%);
 }</style>
 {%endblock%}
+=======
+      {%endblock%}
+>>>>>>> 12de449c3b4e51304461edeedc09e4c38ce1e550
