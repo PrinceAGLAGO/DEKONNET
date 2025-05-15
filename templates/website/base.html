@@ -1,681 +1,991 @@
+
 {% load static %}
-<link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
-<script src="{%static 'js/bootstrap.bundle.min.js'%}"></script>
-
-
-
-
-
+{% block content %}
 <!DOCTYPE html>
 <html lang="fr">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>DEKON NET</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" type="text/css" href="{%static 'css/bootstrap.min.css'%}">
-      <!-- style css -->
-      <link rel="stylesheet" type="text/css" href="{%static 'css/style.css'%}">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="{%static 'css/responsive.css'%}">
-      <!-- fevicon -->
-      <link rel="icon" href="{%static 'images/fevicon.png'%}" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="{%static 'css/jquery.mCustomScrollbar.min.css'%}">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <!-- fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-      <!-- font awesome -->
-      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <!--  -->
-      <!-- owl stylesheets -->
-      <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
-      <link rel="stylesheet" href="{%static 'css/owl.carousel.min.css'%}">
-      <link rel="stylesoeet" href="{%static 'css/owl.theme.default.min.css'%}">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-   </head>
-   <body>
-      <!-- banner bg main start -->
-      <div class="banner_bg_main">
-         <!-- header top section start -->
-         <div class="container">
-            <div class="header_section_top">
-               <div class="row">
-                  <div class="col-sm-12">
-                     <div class="custom_menu">
-                        <ul>
-                           <li><a href="#">Best Sellers</a></li>
-                           <li><a href="#">Gift Ideas</a></li>
-                           <li><a href="#">New Releases</a></li>
-                           <li><a href="#">Today's Deals</a></li>
-                           <li><a href="#">Customer Service</a></li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- header top section start -->
-         <!-- logo section start -->
-         <div class="logo_section">
-            <div class="container">
-               <div class="row">
-                  <div class="col-sm-12">
-                     <div class="logo"><a href="index.html"><img src="{%static 'images/logodekonnet.jpeg'%}"></a></div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- logo section end -->
-         <!-- header section start -->
-         <div class="header_section">
-            <div class="container">
-               <div class="containt_main">
-                  <div id="mySidenav" class="sidenav">
-                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                     <a href="{% url 'home' %}">Maison</a>
-                     <a href="{% url 'fashion' %}">Achats</a>
-                     <a href="{% url 'electronics' %}">Ventes</a>
-                     <a href="{% url 'jewellery' %}">Trocs ou Deals</a>
-                     <a href="{% url 'jewellery' %}">Offres et Promotions</a>
-                     <a href="{% url 'jewellery' %}">Blog</a>
-                     <a href="{% url 'jewellery' %}">Equipe</a>
-                     <a href="{% url 'jewellery' %}">Contact</a>
-                     <a href="{% url 'jewellery' %}">FAQS</a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEKON NET - Plateforme de petites annonces</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/logodekonnet.jpeg' %}" type="image/jpeg">
+</head>
+<body>
+    <!-- Hero Section avec effet parallaxe -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'images/logodekonnet.jpeg' %}" alt="DEKON NET" class="logo-img">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'soumettre_annonce' %}">Déposer une annonce</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'liste_annonces' %}">Explorer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#categories">Catégories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#fonctionnalites">Fonctionnalités</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'profil_utilisateur' %}">Profil</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'liste_annonces' %}">Explorer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#categories">Catégories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#fonctionnalites">Fonctionnalités</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard_abonnee' %}">DASHBOARD</a>
+                            </li>
+                        {% endif %}
+                    </ul>
 
-                  </div>
-                  <span class="toggle_icon" onclick="openNav()"><img src="{%static 'images/toggle-icon.png'%}"></span>
-                  <div class="dropdown">
-                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category 
-                     </button>
-                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{% url 'electronics' %}">Electronic</a>
-                        <a class="dropdown-item" href="{% url 'fashion' %}">Mode</a>
-                        <a class="dropdown-item" href="{% url 'jardin' %}">Jardin</a>
-                        <a class="dropdown-item" href="{% url 'sport' %}">Sports et Loisirs</a>
-                        <a class="dropdown-item" href="{% url 'enfant' %}">Enfants et Bébé</a>
-                        <a class="dropdown-item" href="{% url 'livre' %}">Livres et Médias</a>
-                        <a class="dropdown-item" href="{% url 'automobile' %}">Automobile</a>
-                        <a class="dropdown-item" href="{% url 'service' %}">Services et Cours</a>
-                        <a class="dropdown-item" href="{% url 'art' %}">Art et Objets de Collection</a>
-                        <a class="dropdown-item" href="{% url 'bricolage' %}">Bricolage et Aménagement</a>
-                        <a class="dropdown-item" href="{% url 'alimentation' %}">Alimentation Artisanale</a>
-                        <a class="dropdown-item" href="{% url 'beaute' %}">Beauté et Soins</a>
-                        <a class="dropdown-item" href="{% url 'voyage' %}">Voyages et Echanges</a>
-                        <a class="dropdown-item" href="{% url 'animaux' %}">Animaux de Compagnie</a>
-                        <a class="dropdown-item" href="{% url 'modedurable' %}">Mode Durable et Ethique</a>
-                        <a class="dropdown-item" href="{% url 'decoration' %}">Décoration</a>
-                        <a class="dropdown-item" href="{% url 'maison' %}">Maison </a>
-                        <a class="dropdown-item" href="{% url 'sante' %}">santé et bien être sexuel</a>
-                        <a class="dropdown-item" href="{% url 'cuisine' %}">Ustensiels de Cuisine</a>
-                     </div>
-                  </div>
-                  <div class="main">
-                     <!-- Another variation with a button -->
-                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search this blog">
+                    <div class="auth-buttons ml-3">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm mr-2">Déconnexion</a>
+                        {% else %}
+                            <a href="#" class="btn btn-outline-light btn-sm mr-2" data-toggle="modal" data-target="#loginModal">Connexion</a>
+                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registerModal">Inscription</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+
+            <div class="hero-content">
+                <h1 class="hero-title">Trouvez, Vendez, Échangez <span>Autour de Vous</span></h1>
+                <p class="hero-subtitle">La plateforme locale pour vos achats, ventes et échanges en toute confiance</p>
+                
+                <div class="search-box">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Que recherchez-vous ?">
+                        <select class="form-control custom-select">
+                            <option selected>Toutes catégories</option>
+                            <option>Mode</option>
+                            <option>Électronique</option>
+                            <option>Maison</option>
+                            <option>Automobile</option>
+                        </select>
                         <div class="input-group-append">
-                           <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
-                           <i class="fa fa-search"></i>
-                           </button>
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search"></i> Rechercher
+                            </button>
                         </div>
-                     </div>
-                  </div>
-                  <div class="header_box">
-                     <div class="lang_box ">
-                        <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
-                        <img src="{%static 'images/flag-uk.png'%}" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
-                        </a>
-                        <div class="dropdown-menu ">
-                           <a href="#" class="dropdown-item">
-                           <img src="{%static 'images/flag-france.png'%}" class="mr-2" alt="flag">
-                           French
-                           </a>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="{% url 'soumettre_annonce' %}" class="btn btn-primary btn-lg mr-3">
+                        <i class="fas fa-plus-circle"></i> Déposer une annonce
+                    </a>
+                    <a href="#how-it-works" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-play-circle"></i> Comment ça marche
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll-down">
+            <a href="#categories"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- Catégories Populaires -->
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Catégories Populaires</h2>
+                <p>Parcourez nos principales catégories d'annonces</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4">
+                    <a href="{% url 'electronics' %}" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-laptop"></i>
                         </div>
-                     </div>
-                     <div class="login_menu">
-                        <ul>
-                           <li><a href="#">
-                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                              <span class="padding_10">Cart</span></a>
-                           </li>
-                           <li><a href="#">
-                              <i class="fa fa-user" aria-hidden="true"></i>
-                              <span class="padding_10">Cart</span></a>
-                           </li>
+                        <h3>Électronique</h3>
+                        <p>1,240 annonces</p>
+                    </a>
+                </div>
+                
+                <div class="col-md-3 col-6 mb-4">
+                    <a href="{% url 'fashion' %}" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3>Mode</h3>
+                        <p>980 annonces</p>
+                    </a>
+                </div>
+                
+                <div class="col-md-3 col-6 mb-4">
+                    <a href="{% url 'maison' %}" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Maison</h3>
+                        <p>750 annonces</p>
+                    </a>
+                </div>
+                
+                <div class="col-md-3 col-6 mb-4">
+                    <a href="{% url 'automobile' %}" class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3>Automobile</h3>
+                        <p>520 annonces</p>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary">Voir toutes les catégories <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Annonces récentes -->
+    <section class="listings-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Annonces Récentes</h2>
+                <p>Découvrez les dernières annonces publiées</p>
+            </div>
+            
+            <div class="row">
+                {% for annonce in recent_annonces %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="listing-card">
+                        <div class="listing-badge">Nouveau</div>
+                        <div class="listing-image">
+                            <img src="{{ annonce.article_image.url }}" alt="{{ annonce.titre }}">
+                            <div class="listing-overlay">
+                                <a href="#" class="btn btn-sm btn-primary">Voir détails</a>
+                            </div>
+                        </div>
+                        <div class="listing-content">
+                            <h3>{{ annonce.titre }}</h3>
+                            <div class="listing-price">{{ annonce.prix }} FCFA</div>
+                            <div class="listing-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> {{ annonce.localisation }}</span>
+                                <span><i class="fas fa-clock"></i> {{ annonce.date_publication|timesince }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Comment ça marche -->
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Comment ça marche</h2>
+                <p>3 étapes simples pour commencer</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3>Créez un compte</h3>
+                        <p>Inscrivez-vous gratuitement en quelques secondes pour accéder à toutes les fonctionnalités.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-icon">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <h3>Déposez une annonce</h3>
+                        <p>Publiez votre annonce en quelques minutes avec photos et descriptions détaillées.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Vendez ou échangez</h3>
+                        <p>Connectez-vous avec des acheteurs locaux et concluez votre transaction en toute sécurité.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ce que disent nos utilisateurs</h2>
+                <p>Découvrez les expériences de notre communauté</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "J'ai vendu mon ancien téléphone en moins de 2 jours ! La plateforme est très intuitive et les acheteurs sont sérieux."
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Kossiwa A.">
+                            <div>
+                                <h4>Kossiwa A.</h4>
+                                <span>Lomé, Togo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "J'ai trouvé la table parfaite pour mon salon à un prix imbattable. Le vendeur était très professionnel."
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Komlan D.">
+                            <div>
+                                <h4>Komlan D.</h4>
+                                <span>Kara, Togo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "En tant que petite entreprise, cette plateforme nous a permis de toucher plus de clients locaux. Excellent outil !"
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Afi M.">
+                            <div>
+                                <h4>Afi M.</h4>
+                                <span>Atakpamé, Togo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appel à l'action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Prêt à commencer ?</h2>
+                <p>Rejoignez des milliers d'utilisateurs qui achètent, vendent et échangent localement.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-light btn-lg mr-3" data-toggle="modal" data-target="#registerModal">S'inscrire gratuitement</a>
+                    <a href="{% url 'soumettre_annonce' %}" class="btn btn-outline-light btn-lg">Déposer une annonce</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-logo">
+                        <img src="{% static 'images/logodekonnet.jpeg' %}" alt="DEKON NET">
+                    </div>
+                    <p class="footer-about">
+                        DEKON NET est la plateforme de petites annonces préférée des togolais pour acheter, vendre et échanger en toute confiance.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'home' %}">Accueil</a></li>
+                        <li><a href="{% url 'soumettre_annonce' %}">Déposer une annonce</a></li>
+                        <li><a href="{% url 'liste_annonces' %}">Explorer</a></li>
+                        <li><a href="#how-it-works">Comment ça marche</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h3>Catégories</h3>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'electronics' %}">Électronique</a></li>
+                        <li><a href="{% url 'fashion' %}">Mode</a></li>
+                        <li><a href="{% url 'maison' %}">Maison</a></li>
+                        <li><a href="{% url 'automobile' %}">Automobile</a></li>
+                        <li><a href="#">Voir tout</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <h3>Contactez-nous</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Lomé, Togo</li>
+                        <li><i class="fas fa-phone"></i> +228 97 24 61 10</li>
+                        <li><i class="fas fa-envelope"></i> contact@dekonnet.com</li>
+                    </ul>
+                    
+                    <div class="footer-newsletter">
+                        <h4>Newsletter</h4>
+                        <form>
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="Votre email">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit"><i class="fas fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="copyright">&copy; 2023 DEKON NET. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="footer-bottom-links">
+                            <li><a href="#">Conditions d'utilisation</a></li>
+                            <li><a href="#">Politique de confidentialité</a></li>
+                            <li><a href="#">Cookies</a></li>
                         </ul>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
             </div>
-         </div>
-         <!-- header section end -->
-         <!-- banner section start -->
-         <div class="banner_section layout_padding">
-            <div class="container">
-               <div id="my_slider" class="carousel slide" data-ride="carousel">
-                  <div class="carousel-inner">
-                     <div class="carousel-item active">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <h1 class="banner_taital">Commencer <br>Vos Achats préféré</h1>
-                              <div class="buynow_bt"><a href="#">Acheter Maintenant</a></div>
-                           </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Connexion</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Email ou numéro de téléphone</label>
+                            <input type="email" class="form-control" placeholder="Votre adresse email ou numéro de téléphone">
                         </div>
-                     </div>
-                     <div class="carousel-item">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <h1 class="banner_taital">Commencer <br>Vos Troc ou Deal préféré</h1>
-                              <div class="buynow_bt"><a href="#"> Troquer ou dealer Maintenant</a></div>
-                           </div>
+                        <div class="form-group">
+                            <label>Mot de passe</label>
+                            <input type="password" class="form-control" placeholder="Votre mot de passe">
                         </div>
-                     </div>
-                     <div class="carousel-item">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <h1 class="banner_taital">Commencer <br>Avec nos Offres préféré</h1>
-                              <div class="buynow_bt"><a href="#">Acheter Maintenant</a></div>
-                           </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
                         </div>
-                     </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-                  <i class="fa fa-angle-left"></i>
-                  </a>
-                  <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-                  <i class="fa fa-angle-right"></i>
-                  </a>
-               </div>
+                        <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+                    </form>
+                    
+                    <div class="text-center mt-3">
+                        <a href="#" class="text-muted">Mot de passe oublié ?</a>
+                    </div>
+                    
+                    <div class="social-login mt-4">
+                        <p class="text-center">Ou connectez-vous avec</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="btn btn-outline-primary mr-2"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            <a href="#" class="btn btn-outline-danger"><i class="fab fa-google"></i> Google</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p>Nouveau sur DEKON NET ? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Créer un compte</a></p>
+                </div>
             </div>
-         </div>
-         <!-- banner section end -->
-      </div>
-      <!-- banner bg main end -->
-      <!-- fashion section start -->
-      <div class="fashion_section">
-         <div id="main_slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <h1 class="fashion_taital">Homme & Dame Model</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text"> T -shirt De Homme</h4>
-                                 <p class="price_text">Prix  <span style="color: #262626;">$ 30</span></p>
-                                 <div class="tshirt_img"><img src="{%static 'images/tshirt-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Acheter Maintenant</a></div>
-                                    <div class="seemore_bt"><a href="#">Voir +</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text"> T-shirt De Homme</h4>
-                                 <p class="price_text">Prix  <span style="color: #262626;">$ 30</span></p>
-                                 <div class="tshirt_img"><img src="{%static 'images/dress-shirt-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Acheter Maintenant</a></div>
-                                    <div class="seemore_bt"><a href="#">Voir +</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Woman Scart</h4>
-                                 <p class="price_text">Prix  <span style="color: #262626;">$ 30</span></p>
-                                 <div class="tshirt_img"><img src="{%static 'images/women-clothes-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Acheter Maintenant</a></div>
-                                    <div class="seemore_bt"><a href="#">Voir +</a></div>
-                                 </div>
-                              </div>
-                           </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Créer un compte</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Prénom</label>
+                                <input type="text" class="form-control" placeholder="Votre prénom">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Nom</label>
+                                <input type="text" class="form-control" placeholder="Votre nom">
+                            </div>
                         </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="fashion_taital">Homme Et Dame Model</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">T-shirt De Homme</h4>
-                                 <p class="price_text">Price  <span style="color: #262626;">$ 30</span></p>
-                                 <div class="tshirt_img"><img src="{%static 'images/tshirt-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Acheter Maintenant</a></div>
-                                    <div class="seemore_bt"><a href="#">Voir +</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">T-shirt De Homme</h4>
-                                 <p class="price_text">Prix  <span style="color: #262626;">$ 30</span></p>
-                                 <div class="tshirt_img"><img src="{%static 'images/dress-shirt-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Acheter Maintenant</a></div>
-                                    <div class="seemore_bt"><a href="#">Voir +</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Woman Scart</h4>
-                                 <p class="price_text">Prix  <span style="color: #262626;">$ 30</span></p>
-                                 <div class="tshirt_img"><img src="{%static 'images/women-clothes-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Acheter Maintenant</a></div>
-                                    <div class="seemore_bt"><a href="#">Voir +</a></div>
-                                 </div>
-                              </div>
-                           </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" placeholder="Votre adresse email">
                         </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="fashion_taital">Homme & Dame Model</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text"> T -shirt De Homme</h4>
-                                 <p class="price_text">Prix  <span style="color: #262626;">$ 30</span></p>
-                                 <div class="tshirt_img"><img src="{%static 'images/tshirt-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Acheter Maintenant</a></div>
-                                    <div class="seemore_bt"><a href="#">Voir +</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text"> T-shirt De Homme</h4>
-                                 <p class="price_text">Prix  <span style="color: #262626;">$ 30</span></p>
-                                 <div class="tshirt_img"><img src="{%static 'images/dress-shirt-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Acheter Maintenant</a></div>
-                                    <div class="seemore_bt"><a href="#">Voir +</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Woman Scart</h4>
-                                 <p class="price_text">Prix  <span style="color: #262626;">$ 30</span></p>
-                                 <div class="tshirt_img"><img src="{%static 'images/women-clothes-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Acheter Maintenant</a></div>
-                                    <div class="seemore_bt"><a href="#">Voir +</a></div>
-                                 </div>
-                              </div>
-                           </div>
+                        <div class="form-group">
+                            <label>Téléphone</label>
+                            <input type="tel" class="form-control" placeholder="Votre numéro de téléphone">
                         </div>
-                     </div>
-                  </div>
-               </div>
+                        <div class="form-group">
+                            <label>Date de naissance</label>
+                            <input type="date" class="form-control" placeholder="Votre date de naissance">
+                        </div>
+                        <div class="form-group">
+                            <label>Quartier</label>
+                            <input type="text" class="form-control" placeholder="Votre quartier">
+                        </div>
+                        <div class="form-group">
+                            <label>Mode de paiement</label>
+                            <select name="payment_method" id="payment_method" class="form-control">
+                                <option value="">Sélectionnez un mode de paiement</option>
+                                <option value="credit_card">Carte de crédit</option>
+                                <option value="cash">Espèces</option>
+                                <option value="paypal">PayPal</option>
+                                <option value="bank_transfer">Virement bancaire</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Mot de passe</label>
+                            <input type="password" class="form-control" placeholder="Créez un mot de passe">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmez le mot de passe</label>
+                            <input type="password" class="form-control" placeholder="Confirmez votre mot de passe">
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms">
+                            <label class="form-check-label" for="agreeTerms">J'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+                    </form>
+                    
+                    <div class="social-login mt-4">
+                        <p class="text-center">Ou inscrivez-vous avec</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="btn btn-outline-primary mr-2"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            <a href="#" class="btn btn-outline-danger"><i class="fab fa-google"></i> Google</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p>Vous avez déjà un compte ? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Se connecter</a></p>
+                </div>
             </div>
-            <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-            </a>
-            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-            </a>
-         </div>
-      </div>
-      <!-- fashion section end -->
-      <!-- electronic section start -->
-      <div class="fashion_section">
-         <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <h1 class="fashion_taital">Electronic</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Laptop</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="electronic_img"><img src="{%static 'images/laptop-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Mobile</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="electronic_img"><img src="{%static 'images/mobile-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Computers</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="electronic_img"><img src="{%static 'images/computer-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="fashion_taital">Electronic</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Laptop</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="electronic_img"><img src="{%static 'images/laptop-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Mobile</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="electronic_img"><img src="{%static 'images/mobile-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Computers</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="electronic_img"><img src="{%static 'images/computer-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="fashion_taital">Electronic</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Laptop</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="electronic_img"><img src="{%static 'images/laptop-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Mobile</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="electronic_img"><img src="{%static 'images/mobile-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Computers</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="electronic_img"><img src="{%static 'images/computer-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <a class="carousel-control-prev" href="#electronic_main_slider" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-            </a>
-            <a class="carousel-control-next" href="#electronic_main_slider" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-            </a>
-         </div>
-      </div>
-      <!-- electronic section end -->
-      <!-- jewellery  section start -->
-      <div class="jewellery_section">
-         <div id="jewellery_main_slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <h1 class="fashion_taital">Jewellery Accessories</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Jumkas</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="jewellery_img"><img src="{%static 'images/jhumka-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Necklaces</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="jewellery_img"><img src="{%static 'images/neklesh-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Kangans</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="jewellery_img"><img src="{%static 'images/kangan-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="fashion_taital">Jewellery Accessories</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Jumkas</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="jewellery_img"><img src="{%static 'images/jhumka-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Necklaces</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="jewellery_img"><img src="{%static 'images/neklesh-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Kangans</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="jewellery_img"><img src="{%static 'images/kangan-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="fashion_taital">Jewellery Accessories</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Jumkas</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="jewellery_img"><img src="{%static 'images/jhumka-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Necklaces</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="jewellery_img"><img src="{%static 'images/neklesh-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Kangans</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="jewellery_img"><img src="{%static 'images/kangan-img.png'%}"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <a class="carousel-control-prev" href="#jewellery_main_slider" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-            </a>
-            <a class="carousel-control-next" href="#jewellery_main_slider" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-            </a>
-            <div class="loader_main">
-               <div class="loader"></div>
-            </div>
-         </div>
-      </div>
-      <!-- jewellery  section end -->
-      <!-- footer section start -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="footer_logo"><a href="index.html"><img src="{%static 'images/logodekonnet.jpeg'%}"></a></div>
-            <div class="input_bt">
-               <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
-               <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
-            </div>
-            <div class="footer_menu">
-               <ul>
-                  <li><a href="#">Best Sellers</a></li>
-                  <li><a href="#">Gift Ideas</a></li>
-                  <li><a href="#">New Releases</a></li>
-                  <li><a href="#">Today's Deals</a></li>
-                  <li><a href="#">Customer Service</a></li>
-               </ul>
-            </div>
-            <div class="location_main">Help Line  Number : <a href="#">+228 97246110</a></div>
-         </div>
-      </div>
-      <!-- footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-         <div class="container">
-            <p class="copyright_text">© 2020 All Rights Reserved. Design by <a href="https://html.design">Prince AGLAGO</a></p>
-         </div>
-      </div>
-      <!-- copyright section end -->
-      <!-- Javascript files-->
-      <script src="{%static 'js/jquery.min.js'%}"></script>
-      <script src="{%static 'js/popper.min.js'%}"></script>
-      <script src="{%static 'js/bootstrap.bundle.min.js'%}"></script>
-      <script src="{%static 'js/jquery-3.0.0.min.js'%}"></script>
-      <script src="{%static 'js/plugin.js'%}"></script>
-      <!-- sidebar -->
-      <script src="{%static 'js/jquery.mCustomScrollbar.concat.min.js'%}"></script>
-      <script src="{%static 'js/custom.js'%}"></script>
-      <script>
-         function openNav() {
-           document.getElementById("mySidenav").style.width = "250px";
-         }
-         
-         function closeNav() {
-           document.getElementById("mySidenav").style.width = "0";
-         }
-      </script>
-   </body>
-</html>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    
+    <style>
+        /* Variables CSS */
+        :root {
+            --primary-color: #f26522;
+            --primary-dark: #d85a1e;
+            --secondary-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --gray-color: #6c757d;
+            --light-gray: #e9ecef;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+        
+        .btn {
+            font-weight: 500;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(242, 101, 34, 0.3);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .section-header p {
+            color: var(--gray-color);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(242, 101, 34, 0.2) 0%, rgba(44, 62, 80, 0.8) 100%);
+            z-index: 0;
+        }
+        
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(44, 62, 80, 0.95);
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-img {
+            height: 40px;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled .logo-img {
+            height: 35px;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.25rem;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            margin-top: 4rem;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-title span {
+            color: var(--primary-color);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(242, 101, 34, 0.3);
+            z-index: -1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .search-box {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .search-box .form-control {
+            height: 50px;
+            border-radius: 50px 0 0 50px;
+            border-right: none;
+            padding-left: 1.5rem;
+        }
+        
+        .search-box .custom-select {
+            height: 50px;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            max-width: 200px;
+        }
+        
+        .search-box .btn {
+            height: 50px;
+            border-radius: 0 50px 50px 0;
+            padding: 0 2rem;
+        }
+        
+        .hero-buttons {
+            margin-top: 2rem;
+        }
+        
+        .hero-scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            animation: bounce 2s infinite;
+        }
+        
+        .hero-scroll-down a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 36px;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .hero-scroll-down a:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(5px);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        /* Categories Section */
+        .categories-section {
+            padding: 5rem 0;
+            background-color: var(--light-color);
+        }
+        
+        .category-card {
+            display: block;
+            background: white;
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            height: 100%;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(242, 101, 34, 0.1) 0%, rgba(44, 62, 80, 0.1) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .category-card:hover .category-icon {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+        
+        .category-icon i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .category-card:hover .category-icon i {
+            color: white;
+        }
+        
+        .category-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-card p {
+            color: var(--gray-color);
+            margin-bottom: 0;
+        }
+        
+        /* Listings Section */
+        .listings-section {
+            padding: 5rem 0;
+        }
+        
+        .listing-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            height: 100%;
+        }
+        
+        .listing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .listing-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .listing-image {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+        
+        .listing-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .listing-card:hover .listing-image img {
+            transform: scale(1.05);
+        }
+        
+        .listing-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .listing-card:hover .listing-overlay {
+            opacity: 1;
+        }
+        
+        .listing-content {
+            padding: 1.5rem;
+        }
+        
+        .listing-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .listing-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+        
+        .listing-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--gray-color);
+        }
+        
+        .listing-meta span i {
+            margin-right: 0.25rem;
+        }
+        
+        /* How It Works Section */
+        .how-it-works-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(242, 101, 34, 0.05) 0%, rgba(44)
 
 
-
-{%block content%}
-
-{% endblock content %}
+      {%endblock%}

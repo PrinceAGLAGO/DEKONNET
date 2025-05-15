@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | DEKONNET</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'css/ionicons.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'css/AdminLTE.css' %}" rel="stylesheet" type="text/css" />
+</head>
+<body class="skin-black">
+  <header class="header">
+    <a href="/" class="logo">DEKONNET Admin</a>
+    <nav class="navbar navbar-static-top" role="navigation">
+      <div class="navbar-right">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-user"></i>
+              <span>{{ request.user.prenom }} {{ request.user.nom }} <i class="caret"></i></span>
+            </a>
+            <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+              <li class="divider"></li>
+              <li><a href=""><i class="fa fa-user fa-fw pull-right"></i> Profil</a></li>
+              <li><a href=""><i class="fa fa-lock fa-fw pull-right"></i> Mot de passe</a></li>
+              <li class="divider"></li>
+              <li><a href=""><i class="fa fa-sign-out fa-fw pull-right"></i> Déconnexion</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="wrapper row-offcanvas row-offcanvas-left">
+    <aside class="left-side sidebar-offcanvas">
+      <section class="sidebar">
+        <ul class="sidebar-menu">
+          <li><a href=""><i class="fa fa-dashboard"></i> <span>Tableau de bord</span></a></li>
+          <li><a href=""><i class="fa fa-users"></i> <span>Gérer les utilisateurs</span></a></li>
+          <li><a href=""><i class="fa fa-bullhorn"></i> <span>Gérer les annonces</span></a></li>
+          <li><a href=""><i class="fa fa-line-chart"></i> <span>Suivi des activités</span></a></li>
+          <li><a href=""><i class="fa fa-warning"></i> <span>Avertissements</span></a></li>
+          <li><a href=""><i class="fa fa-ban"></i> <span>Exclusions</span></a></li>
+        </ul>
+      </section>
+    </aside>
+
+    <aside class="right-side">
+      <section class="content-header">
+        <h1>Tableau de bord administrateur <small>Bonjour {{ request.user.prenom }}</small></h1>
+      </section>
+
+      <section class="content">
+        <div class="row">
+          <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>{{ nb_utilisateurs }}</h3>
+                <p>Utilisateurs inscrits</p>
+              </div>
+              <div class="icon"><i class="fa fa-users"></i></div>
+              <a href="" class="small-box-footer">Voir tout <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h3>{{ nb_annonces_valides }}</h3>
+                <p>Annonces validées</p>
+              </div>
+              <div class="icon"><i class="fa fa-bullhorn"></i></div>
+              <a href="" class="small-box-footer">Gérer <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-yellow">
+              <div class="inner">
+                <h3>{{ nb_alertes }}</h3>
+                <p>Avertissements actifs</p>
+              </div>
+              <div class="icon"><i class="fa fa-warning"></i></div>
+              <a href="" class="small-box-footer">Voir les alertes <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-red">
+              <div class="inner">
+                <h3>{{ nb_exclus }}</h3>
+                <p>Utilisateurs exclus</p>
+              </div>
+              <div class="icon"><i class="fa fa-ban"></i></div>
+              <a href="" class="small-box-footer">Voir la liste <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/AdminLTE/app.js' %}"></script>
+</body>
+</html>

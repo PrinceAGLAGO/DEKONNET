@@ -8,9 +8,11 @@ from utilisateurs.models import Utilisateur
 class Annonce(models.Model):
     TROC='T'
     VENTE='V'
+    ACHAT='A'
     TYPE_CHOICES=[
         (TROC,'troc'),
         (VENTE,'vente'),
+        (ACHAT,'achat'),
     ]
 
 

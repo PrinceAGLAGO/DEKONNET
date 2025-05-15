@@ -7,7 +7,8 @@ from django.http import HttpResponse
 # Create your views here.
 
 def home(request):
-    return render(request, 'website/home.html')
+    return render(request, 'website/base.html')
+
 def electronics(request):
     return render(request, 'website/electronics.html')
 def fashion(request):
@@ -102,19 +103,35 @@ def error_500(request):
 def blank_page(request):
     return render(request, 'pages/examples/blank.html')
 
-@login_required
-def creer_annonce(request):
+# @login_required
+def soumettre_annonce(request):
     if request.method == 'POST':
         form = AnnonceForm(request.POST, request.FILES)
         if form.is_valid():
             annonce = form.save(commit=False)
             annonce.user = request.user
             annonce.save()
-            return redirect('ajouter_exigences', annonce_id=annonce.id)
+            return redirect('home')
     else:
         form = AnnonceForm()
-    return render(request, 'dekon/annonce/creer.html', {'form': form})
+    return render(request, 'dekon/soumettre_annonce.html', {'form': form})
 
+def detail_annonce(request, annonce_id):
+    annonce = Annonce.objects.get(id=annonce_id)
+    return render(request, 'dekon/detail_annonce.html', {'annonce': annonce})
+
+# # @login_required
+# def creer_annonce(request):
+#     if request.method == 'POST':
+#         form = AnnonceForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             annonce = form.save(commit=False)
+#             annonce.user = request.user
+#             annonce.save()
+#             return redirect('ajouter_exigences', annonce_id=annonce.id)
+#     else:
+#         form = AnnonceForm()
+#     return render(request, 'dekon/annonce/creer.html', {'form': form})
 
 @login_required
 def ajouter_exigences(request, annonce_id):
@@ -132,4 +149,12 @@ def ajouter_exigences(request, annonce_id):
 
 def liste_annonces(request):
     annonces = Annonce.objects.filter(statut='actif')
-    return render(request, 'dekon/annonce/liste.html', {'annonces': annonces})
+    return render(request, 'dekon/liste_annonces.html', {'annonces': annonces})
+
+
+def dashboard_abonnee(request):
+    if request.user.is_authenticated:
+        annonces = Annonce.objects.filter(user=request.user)
+        return render(request, 'dekon/dashboard_abonnee.html', {'annonces': annonces})
+    else:
+        return redirect('login')
